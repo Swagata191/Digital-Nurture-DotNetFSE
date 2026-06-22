@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="mainHeader">
+        <h1>Township Community Event Portal</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#registration">Register</a></li>
+            <li><a href="#bulletin">Bulletin</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="home" class="eventCard">
+            <div id="welcomeBanner">
+                <h2>Welcome Back, Resident!</h2>
+                <p>Check out our seasonal schedules below! Don't miss our <span style="color: #e74c3c; font-weight: bold; background: #ffffff; padding: 2px 6px; border-radius: 4px; display: inline-block;">Special Early Bird Offer</span> for upcoming weekend activities.</p>
+                <p>Please make sure your email records are <span class="highlight">up to date</span> to receive instantaneous entry gate passes.</p>
+            </div>
+        </section>
+
+        <section id="events" class="eventCard">
+            <h2>Upcoming Community Events</h2>
+            
+            <table>
+                <caption>Gallery of Past and Upcoming Local Gatherings (Double-click images to scale view sizes)</caption>
+                <thead>
+                    <tr>
+                        <th>Morning Tracks</th>
+                        <th>Midday Festivals</th>
+                        <th>Evening Gatherings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="pictures/img1.jpg" alt="Local Charity Marathon Route Layout" title="Annual 5K Charity Run" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Annual 5K Charity Run</p>
+                        </td>
+                        <td>
+                            <img src="pictures/img2.jpg" alt="Outdoor Food Trucks and Pop-up Dining Tents" title="Street Food & Cultural Fair" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Street Food Fair</p>
+                        </td>
+                        <td>
+                            <img src="pictures/img3.webp" alt="Neighborhood Volunteers Gathering for Park Eco Cleanup" title="Green Earth Initiative Cleanup" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Community Park Cleanup</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="pictures/img4.jpg" alt="Children Assembled at Art and Crafting Tables" title="Kids Craft & Paint Day" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Kids Craft & Paint Day</p>
+                        </td>
+                        <td>
+                            <img src="pictures/img5.jpg" alt="Live Music Band Performing on Outdoor Concert Stage" title="Summer Jazz Night Festival" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Live Summer Jazz Night</p>
+                        </td>
+                        <td>
+                            <img src="pictures/img6.jpg" alt="Fresh Organic Produce Stalls at Local Farmers Market" title="Weekly Community Farmers Market" class="gallery-border" ondblclick="toggleEnlarge(this)">
+                            <p class="table-caption-text">Weekly Farmers Market</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="registration" class="eventCard">
+            <h2>Event Registry & Ticket Booking</h2>
+            
+            <form id="eventForm" onsubmit="processFormSubmission(event)">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" placeholder="e.g. John Doe" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Email Address:</label>
+                    <input type="email" id="userEmail" placeholder="john.doe@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPhone">Phone Number (10 digits required):</label>
+                    <input type="tel" id="userPhone" placeholder="e.g. 1234567890" onblur="validatePhoneNumber(this)" required>
+                    <span id="phoneError" class="error-msg"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Preferred Booking Date:</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventType">Select Event Program Type:</label>
+                    <select id="eventType" onchange="handleEventTypeChange(this)" required>
+                        <option value="">-- Please Select An Event --</option>
+                        <option value="marathon">Charity Marathon ($15.00 entry fee)</option>
+                        <option value="foodfair">Street Food Fair ($5.00 entry gate fee)</option>
+                        <option value="cleanup">Park Cleanup Campaign (Free Registration)</option>
+                        <option value="jazz">Live Summer Jazz Night ($25.00 ticket fee)</option>
+                    </select>
+                    <div id="feeTrackerDisplay"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userRequirements">Special Requirements / Message:</label>
+                    <textarea id="userRequirements" placeholder="State any accessibility options, seating arrangements, or generic dietary needs queries..."></textarea>
+                </div>
+
+                <button type="submit" onclick="logSubmitClick()">Register for Event</button>
+                
+                <button type="button" class="clear-btn" onclick="clearSavedPreferences()">Clear Preferences</button>
+                
+                <output id="registrationOutput"></output>
+            </form>
+        </section>
+
+        <section id="feedback" class="eventCard">
+            <h2>Real-Time System Feedback</h2>
+            <div class="form-group">
+                <label for="feedbackArea">Tell us about your portal processing experience:</label>
+                <textarea id="feedbackArea" placeholder="Start typing your feedback comments details here..." onkeyup="updateLiveCharacterCount(this)"></textarea>
+                <div id="charCountDisplay">Characters typed: 0</div>
+            </div>
+        </section>
+
+        <section id="media" class="eventCard">
+            <h2>Event Promotional Invite Presentation</h2>
+            <video id="promoVideo" controls oncanplay="displayVideoReadyStatus()">
+                <source src="pictures/event_promotion.mp4" type="video/mp4">
+                Your browser platform engine configuration layout metrics do not natively support HTML5 standard media streams tracking rulesets.
+            </video>
+            <p id="videoStatus">Loading streaming promo invite file components... please wait.</p>
+        </section>
+
+        <section id="geo" class="eventCard">
+            <h2>Locate Your Closest Event Area</h2>
+            <p style="margin-bottom: 15px;">Allow your system software stack context access permissions to look up real-time coordinate position tracking tags.</p>
+            <button type="button" onclick="fetchResidentCoordinates()">Find Nearby Events</button>
+            <div id="geoDisplay">Coordinates are not mapped yet. Click the button above to determine local ranges.</div>
+        </section>
+
+        <section id="bulletin" class="eventCard">
+            <h2 style="color: #e74c3c;">Community Bulletin Board</h2>
+            <div class="bulletin-columns">
+                <h3>Local Council Updates</h3>
+                <p>Welcome to our new informational multi-column bulletin segment layout structure. Our township municipal group is finalizing multiple upgrades to enhance open-air performance fields and nature preserves across the state this coming fiscal quarter.</p>
+                <h3>Upcoming Seasonal Projects</h3>
+                <p>Residents are encouraged to review security guidelines before processing reservation registry bookings. Security layers maintain strict capacity rules constraints across public grounds properties to support neighborhood alignment, cleanliness, and safety metrics parameters consistently over the holiday break schedules.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local City Council Registry Portal. All Rights Reserved. Managed via Unified HTML5/CSS3 Framework Modules.</p>
+    </footer>
+
+
+    <script>
+        console.log("[System Core Architecture]: Community Event Portal system operations logging stream live.");
+
+        let isFormModified = false;
+        document.getElementById('eventForm').addEventListener('input', () => {
+            isFormModified = true;
+        });
+
+        window.onbeforeunload = function(event) {
+            if (isFormModified) {
+                return "You have completely unsubmitted form entries active inside tracking layers! Drop processing data loops?";
+            }
+        };
+
+        function validatePhoneNumber(inputNode) {
+            const numericPatternMatchRule = /^\d{10}$/;
+            const errorElement = document.getElementById('phoneError');
+            
+            if (inputNode.value !== "" && !numericPatternMatchRule.test(inputNode.value)) {
+                errorElement.textContent = "⚠️ Invalid configuration! Contact sequence must match exactly 10 digital numeric digits.";
+                inputNode.style.borderColor = "#e74c3c";
+            } else {
+                errorElement.textContent = "";
+                inputNode.style.borderColor = "#cbd5e1";
+            }
+        }
+
+        function handleEventTypeChange(selectNode) {
+            const dynamicPricingMatrix = {
+                'marathon': '$15.00 entry fee application parameter verified.',
+                'foodfair': '$5.00 general entry access ticket charge applied.',
+                'cleanup': '$0.00 rate verified: Voluntary community contribution participation program.',
+                'jazz': '$25.00 live performance reservation tier seat fee applied.'
+            };
+
+            const targetSelectedValue = selectNode.value;
+            const textFeedbackDisplayArea = document.getElementById('feeTrackerDisplay');
+
+            if (targetSelectedValue && dynamicPricingMatrix[targetSelectedValue]) {
+                textFeedbackDisplayArea.textContent = `Fee Assessment Context: ${dynamicPricingMatrix[targetSelectedValue]}`;
+                localStorage.setItem('savedPreferredEvent', targetSelectedValue);
+                sessionStorage.setItem('sessionActivationMarker', Date.now());
+            } else {
+                textFeedbackDisplayArea.textContent = "";
+            }
+        }
+
+        function logSubmitClick() {
+            console.log("[User Actions Metric]: Action validation processing engine routing check loop initiated.");
+        }
+
+        function processFormSubmission(event) {
+            event.preventDefault();
+            isFormModified = false;
+
+            const residentApplicantNameValue = document.getElementById('fullName').value;
+            const structuralSelectElement = document.getElementById('eventType');
+            const plainTextSelectedOptionDescription = structuralSelectElement.options[structuralSelectElement.selectedIndex].text;
+
+            const targetedRenderOutputNode = document.getElementById('registrationOutput');
+            targetedRenderOutputNode.textContent = `Registry Transacted! Thank you, ${residentApplicantNameValue}. Your seat allocations configuration placeholder for "${plainTextSelectedOptionDescription}" has been recorded.`;
+        }
+
+        function toggleEnlarge(imageElementTarget) {
+            if (imageElementTarget.style.transform === "scale(1.4)") {
+                imageElementTarget.style.transform = "scale(1.0)";
+                imageElementTarget.style.zIndex = "1";
+                imageElementTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+            } else {
+                imageElementTarget.style.transform = "scale(1.4)";
+                imageElementTarget.style.zIndex = "100";
+                imageElementTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+            }
+        }
+
+        function updateLiveCharacterCount(textareaElementNode) {
+            const calculatedStringLengthIndex = textareaElementNode.value.length;
+            document.getElementById('charCountDisplay').textContent = `Characters typed: ${calculatedStringLengthIndex}`;
+        }
+
+        function displayVideoReadyStatus() {
+            document.getElementById('videoStatus').textContent = "✓ Content Stream Buffering Finalized! Video invite presentation is ready to play.";
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const cachedUserSelectionContextString = localStorage.getItem('savedPreferredEvent');
+            if (cachedUserSelectionContextString) {
+                const globalSelectDropdownNode = document.getElementById('eventType');
+                globalSelectDropdownNode.value = cachedUserSelectionContextString;
+                handleEventTypeChange(globalSelectDropdownNode);
+            }
+        });
+
+        function clearSavedPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            document.getElementById('eventType').value = "";
+            document.getElementById('feeTrackerDisplay').textContent = "";
+            alert("Application data preference markers dropped and cleared completely out of your browser runtime storage caches layers.");
+        }
+
+        function fetchResidentCoordinates() {
+            const consoleOutputReadoutArea = document.getElementById('geoDisplay');
+            consoleOutputReadoutArea.textContent = "Querying precision spatial positioning satellites data tracks...";
+
+            const accuracyTelemetryParametersConfig = {
+                enableHighAccuracy: true,
+                timeout: 8000,
+                maximumAge: 0
+            };
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(onPositionResolutionSuccess, onPositionResolutionFailure, accuracyTelemetryParametersConfig);
+            } else {
+                consoleOutputReadoutArea.textContent = "Error: Geolocation location checking systems are entirely unsupported.";
+            }
+        }
+
+        function onPositionResolutionSuccess(retrievedPositionObjectData) {
+            const coordinateLatitudeMetricVal = retrievedPositionObjectData.coords.latitude;
+            const coordinateLongitudeMetricVal = retrievedPositionObjectData.coords.longitude;
+            document.getElementById('geoDisplay').innerHTML = 
+                `✓ Device Coordinates Successfully Mapped! <br> Spatial Latitude: ${coordinateLatitudeMetricVal.toFixed(5)}° <br> Spatial Longitude: ${coordinateLongitudeMetricVal.toFixed(5)}°`;
+        }
+
+        function onPositionResolutionFailure(telemetryErrorContextData) {
+            const consoleOutputReadoutArea = document.getElementById('geoDisplay');
+            switch(telemetryErrorContextData.code) {
+                case telemetryErrorContextData.PERMISSION_DENIED:
+                    consoleOutputReadoutArea.textContent = "❌ Position Blocked: System authorization authorization request rejected by user.";
+                    break;
+                case telemetryErrorContextData.TIMEOUT:
+                    consoleOutputReadoutArea.textContent = "❌ Timeout Fault: Verification loop ceiling hit before capturing stable coordinate tracking signals.";
+                    break;
+                default:
+                    consoleOutputReadoutArea.textContent = "❌ Access Fault: Location metrics unavailable.";
+            }
+        }
+    </script>
+</body>
+</html>
