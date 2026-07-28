@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 5 - Working with Events</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    #colorBox { width: 150px; height: 150px; background: white; border: 1px solid #333; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <button id="colorBtn">Change Color</button>
+  <div id="colorBox"></div>
+
+  <script>
+    $(document).ready(function () {
+      // Click: turn the box red
+      $('#colorBtn').click(function () {
+        $('#colorBox').css('background-color', 'red');
+      });
+
+      // Double-click: reset the box to white
+      $('#colorBox').dblclick(function () {
+        $(this).css('background-color', 'white');
+      });
+    });
+  </script>
+</body>
+</html>

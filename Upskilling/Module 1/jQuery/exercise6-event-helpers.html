@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 6 - Event Helpers</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    #textBox { padding: 20px; background: #eee; width: 300px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div id="textBox">Hover, click, or double-click me</div>
+  <br>
+  <input type="text" id="keyInput" placeholder="Type here for keypress event">
+  <p id="keyStatus"></p>
+
+  <script>
+    $(document).ready(function () {
+      $('#textBox').click(function () {
+        $(this).css('background-color', 'lightblue').text('You clicked me!');
+      });
+
+      $('#textBox').dblclick(function () {
+        $(this).css('background-color', 'lightgreen').text('You double-clicked me!');
+      });
+
+      $('#textBox').mouseenter(function () {
+        $(this).css('background-color', 'yellow');
+      });
+
+      $('#textBox').mouseleave(function () {
+        $(this).css('background-color', '#eee').text('Hover, click, or double-click me');
+      });
+
+      $('#keyInput').keypress(function () {
+        $('#keyStatus').text('Key pressed! Current length: ' + ($(this).val().length + 1));
+      });
+    });
+  </script>
+</body>
+</html>

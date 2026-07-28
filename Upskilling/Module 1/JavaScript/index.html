@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal - JavaScript Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f8; }
+    .eventCardEl { background: white; border-radius: 6px; padding: 12px; margin: 8px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+    #logOutput { background: #1e293b; color: #a3e635; font-family: monospace; padding: 10px; height: 160px; overflow-y: auto; white-space: pre-wrap; }
+    #spinner { display: none; }
+  </style>
+</head>
+<body>
+
+  <h1>Local Community Event Portal</h1>
+
+  <!-- Exercise 4/5/6/7: Rendered events go here -->
+  <section>
+    <h2>Events</h2>
+    <label for="categoryFilter">Filter by category:</label>
+    <select id="categoryFilter">
+      <option value="all">All</option>
+      <option value="music">Music</option>
+      <option value="sports">Sports</option>
+      <option value="market">Market</option>
+    </select>
+    <input type="text" id="searchBox" placeholder="Search events by name...">
+    <div id="eventList"></div>
+  </section>
+
+  <!-- Exercise 9: Async fetch demo -->
+  <section>
+    <h2>Fetched Events (Async Demo)</h2>
+    <button id="loadEventsBtn">Load Events from Mock API</button>
+    <span id="spinner">Loading...</span>
+    <ul id="fetchedEventsList"></ul>
+  </section>
+
+  <!-- Exercise 11: Registration Form -->
+  <section>
+    <h2>Register for an Event</h2>
+    <form id="registerForm">
+      <label for="regName">Name:</label>
+      <input type="text" id="regName" name="regName"><br>
+      <label for="regEmail">Email:</label>
+      <input type="email" id="regEmail" name="regEmail"><br>
+      <label for="regEvent">Event:</label>
+      <select id="regEvent" name="regEvent">
+        <option value="Farmers Market">Farmers Market</option>
+        <option value="Charity Fun Run">Charity Fun Run</option>
+        <option value="Movie Night">Movie Night</option>
+      </select><br>
+      <div id="formErrors" style="color:red;"></div>
+      <button type="submit">Submit Registration</button>
+    </form>
+    <p id="submitStatus"></p>
+  </section>
+
+  <!-- Console mirror so behaviour is visible without opening DevTools -->
+  <section>
+    <h2>Console Log Output</h2>
+    <div id="logOutput"></div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 2 - The $() Function</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <h1 id="title">Original Heading</h1>
+  <p id="para1">This is the first paragraph.</p>
+  <p id="para2">This is the second paragraph (will be hidden).</p>
+  <button id="hideBtn">Hide Second Paragraph</button>
+
+  <script>
+    $(document).ready(function () {
+      // Change the text of the h1
+      $('#title').text('Welcome to the Community Portal');
+
+      // Hide one of the paragraphs when the button is clicked
+      $('#hideBtn').click(function () {
+        $('#para2').hide();
+      });
+    });
+  </script>
+</body>
+</html>

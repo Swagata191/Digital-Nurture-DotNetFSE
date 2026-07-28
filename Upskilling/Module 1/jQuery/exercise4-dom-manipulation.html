@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 4 - DOM Manipulation</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <form id="itemForm">
+    <input type="text" id="itemInput" placeholder="Enter an event name">
+    <button type="submit" id="addBtn">Add</button>
+  </form>
+
+  <ul id="itemList"></ul>
+  <button id="removeAllBtn">Remove All</button>
+
+  <script>
+    $(document).ready(function () {
+      $('#itemForm').submit(function (event) {
+        event.preventDefault();
+        const value = $('#itemInput').val().trim();
+        if (value) {
+          $('<li>').text(value).appendTo('#itemList');
+          $('#itemInput').val('');
+        }
+      });
+
+      $('#removeAllBtn').click(function () {
+        $('#itemList').empty();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1 - jQuery Library Inclusion</title>
+
+  <!-- Method 1: Include jQuery via CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Method 2: Include a locally downloaded copy instead, comment out the CDN line above
+       and uncomment the line below after saving jquery-3.7.1.min.js next to this file:
+  <script src="jquery-3.7.1.min.js"></script>
+  -->
+</head>
+<body>
+  <p id="greeting">Hello World!</p>
+
+  <script>
+    $(document).ready(function () {
+      console.log($('#greeting').text());
+    });
+  </script>
+</body>
+</html>
